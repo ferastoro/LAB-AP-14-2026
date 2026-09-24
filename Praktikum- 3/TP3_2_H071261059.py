@@ -29,4 +29,4 @@ for baris in range(1, n_baris + 1):
         if baris == 1 and kursi % 2 == 0:
             continue
 
-        print(f"Baris {baris} - Kursi {kursi}")
+        print(f"Baris {baris} - Kursi {kursi}") 
