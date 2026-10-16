@@ -1,0 +1,106 @@
+kandidat_set = set()
+rekap_suara = {}
+
+def daftar_kandidat(kandidat_set, nama):
+    nama = nama.capitalize()
+    kandidat_set.add(nama)
+
+
+def berikan_suara(rekap_suara, kandidat_set, nama_pemilih, pilihan):
+    nama_pemilih = nama_pemilih.lower()
+    pilihan = pilihan.capitalize()
+
+    if nama_pemilih in rekap_suara:
+        print("Kamu sudah memberikan suara!")
+    elif pilihan not in kandidat_set:
+        print("Kandidat tidak ditemukan!")
+    else:
+        rekap_suara[nama_pemilih] = pilihan
+        print("Suara berhasil dicatat!")
+
+
+def hitung_suara(rekap_suara, kandidat_set):
+    perolehan = {}
+
+    for kandidat in kandidat_set:
+        perolehan[kandidat] = 0
+
+    for pilihan in rekap_suara.values():
+        perolehan[pilihan] += 1
+
+    return perolehan
+
+
+def tampilkan_hasil(perolehan):
+    total_suara = 0
+
+    for kandidat in perolehan:
+        total_suara += perolehan[kandidat]
+        print(kandidat, ":", perolehan[kandidat], "suara")
+
+    print("Total suara masuk:", total_suara)
+
+    if total_suara == 0:
+        print("Belum ada suara yang masuk.")
+        return
+
+    suara_tertinggi = max(perolehan.values())
+    pemenang = []
+
+    for kandidat in perolehan:
+        if perolehan[kandidat] == suara_tertinggi:
+            pemenang.append(kandidat)
+
+    if len(pemenang) > 1:
+        print("Hasil seri! Perlu pemilihan ulang.")
+    else:
+        print("Pemenang:", pemenang[0])
+
+
+print("=== PENDAFTARAN KANDIDAT ===")
+
+while len(kandidat_set) < 2:
+    nama = input("Nama kandidat (kosong untuk selesai): ")
+
+    if nama == "":
+        if len(kandidat_set) < 2:
+            print("Minimal harus ada 2 kandidat!")
+        continue
+
+    daftar_kandidat(kandidat_set, nama)
+
+    if len(kandidat_set) < 2:
+        print("Kandidat terdaftar:", kandidat_set)
+
+    if len(kandidat_set) >= 2:
+        break
+
+while True:
+    nama = input("Nama kandidat (kosong untuk selesai): ")
+
+    if nama == "":
+        break
+
+    daftar_kandidat(kandidat_set, nama)
+
+print("Daftar kandidat:", kandidat_set)
+
+print("\n=== PEMUNGUTAN SUARA ===")
+
+while True:
+    nama_pemilih = input("Nama pemilih (kosong untuk selesai): ")
+
+    if nama_pemilih == "":
+        break
+
+    print("Kandidat yang tersedia:", kandidat_set)
+    pilihan = input("Pilih kandidat: ")
+
+    berikan_suara(
+        rekap_suara, kandidat_set, nama_pemilih, pilihan
+    )
+
+print("\n=== HASIL PEMILIHAN ===")
+
+perolehan = hitung_suara(rekap_suara, kandidat_set)
+tampilkan_hasil(perolehan)
