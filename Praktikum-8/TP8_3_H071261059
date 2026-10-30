@@ -1,0 +1,32 @@
+import re
+no_sebelum = []
+no_setelah = []
+no_valid = []
+
+jumlah = int(input("masukkan jumlah no telepon: "))
+for i in range(jumlah):
+    nomor = input(f"nomor ke {i+1}: ")
+    no_sebelum.append(nomor)
+
+    no_bersih = re.sub(r"[\s-]", "", nomor)
+    no_setelah.append(no_bersih)
+
+    if re.match(r"^[0-9]{10,13}$", no_bersih):
+        no_valid.append(no_bersih)
+
+print("---hasil pembersihan---")
+
+for i in range(jumlah):
+    print(f"\ndata {i+1}")
+    print("sebelum : ", no_sebelum[i])
+    print("setelah : ", no_setelah[i])
+    if re.match(r"^[0-9]{10,13}$", no_setelah[i]):
+        print("status  :  valid")
+    else: 
+        print("status  :  tidak valid")
+
+print("\njumlah nomor valid: ", len(no_valid))
+
+
+
+    
