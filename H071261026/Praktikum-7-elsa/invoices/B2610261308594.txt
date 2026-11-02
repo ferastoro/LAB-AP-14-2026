@@ -1,0 +1,5 @@
+Kasir: Base
+ID Transaksi: B2610261308594
+baju x2 = Rp50000
+kipas x1 = Rp30000
+Total: Rp80000
