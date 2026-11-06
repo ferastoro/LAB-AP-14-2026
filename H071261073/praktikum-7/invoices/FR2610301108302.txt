@@ -1,0 +1,17 @@
+========== INVOICE ==========
+Nama kasir: faiz rakimang
+Waktu: 2026-10-30 11:08:16
+ID Transaksi: FR2610301108302
+-----------------------------
+Produk: g
+Harga: Rp 3
+Jumlah: 5
+Subtotal: Rp 15
+-----------------------------
+Produk: k
+Harga: Rp 5
+Jumlah: 4
+Subtotal: Rp 20
+-----------------------------
+TOTAL: Rp 35
+=============================
